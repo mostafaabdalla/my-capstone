@@ -47,7 +47,7 @@ jobs:
     steps:
       - run:
           command: |
-            sleep 300
+            sleep 420
           name: Delay deployment update
 
   deployment-1:
@@ -113,6 +113,13 @@ jobs:
             name: verify new deployment works
             command: |
               kubectl get all
+  delay-2:
+    executor: aws-eks/python3
+    steps:
+      - run:
+          command: |
+            sleep 420
+          name: Delay cluster delete
 
 workflows:
   deployment:
@@ -134,7 +141,10 @@ workflows:
             requires:
               - deployment-1
               - delay
-#        - aws-eks/delete-cluster:
-#            cluster-name: production
-#            requires:
-#              - deployment-2
+        - delay-2:
+            requires:
+              - deployment-2
+        - aws-eks/delete-cluster:
+            cluster-name: production
+            requires:
+              - delay-2
