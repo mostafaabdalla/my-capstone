@@ -47,8 +47,8 @@ jobs:
     steps:
       - run:
           command: |
-            sleep 540
-          name: Delay cluster deletion
+            sleep 300
+          name: Delay deployment update
 
   deployment-1:
      executor: aws-eks/python3
@@ -128,12 +128,13 @@ workflows:
               - create-small-cluster
         - lint:
             requires:
-              - deployment-1
+             - deployment-1
         - deployment-2:
             cluster-name: production
             requires:
               - deployment-1
-        - aws-eks/delete-cluster:
-            cluster-name: production
-            requires:
-              - deployment-2
+              - delay
+#        - aws-eks/delete-cluster:
+#            cluster-name: production
+#            requires:
+#              - deployment-2
