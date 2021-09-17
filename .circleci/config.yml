@@ -133,7 +133,7 @@ workflows:
             dockerfile: Dockerfile
             no-output-timeout: 20m
             repo: capstone
-            tag: 'latest'
+            tag: 'deployment2'
             region: AWS_DEFAULT_REGION
             account-url: AWS_ECR_ACCOUNT_URL
             aws-access-key-id: AWS_ACCESS_KEY_ID
