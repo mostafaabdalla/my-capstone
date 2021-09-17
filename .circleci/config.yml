@@ -129,6 +129,13 @@ workflows:
         - lint:
             requires:
              - deployment-1
+        - aws-ecr/build-and-push-image:
+            dockerfile: Dockerfile
+            no-output-timeout: 20m
+            repo: capstone
+            tag: 'latest'
+            requires:
+              - lint
         - deployment-2:
             cluster-name: production
             requires:
