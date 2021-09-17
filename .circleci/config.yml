@@ -135,7 +135,7 @@ workflows:
             repo: capstone
             tag: 'latest'
             region: AWS_DEFAULT_REGION
-            account-url: 663119550079.dkr.ecr.us-east-1.amazonaws.com/capstone
+            account-url: AWSAWS_ECR_ACCOUNT_URL
             aws-access-key-id: AWS_ACCESS_KEY_ID
             aws-secret-access-key: AWS_SECRET_ACCESS_KEY
 #            requires:
