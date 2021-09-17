@@ -117,18 +117,18 @@ jobs:
 workflows:
   deployment:
     jobs:
-        - create-small-cluster:
-            cluster-name: production
-        - delay:
-            requires:
-              - create-small-cluster
-        - deployment-1:
-            cluster-name: production
-            requires:
-              - create-small-cluster
-        - lint:
-            requires:
-             - deployment-1
+#        - create-small-cluster:
+#            cluster-name: production
+#        - delay:
+#            requires:
+#              - create-small-cluster
+#        - deployment-1:
+#            cluster-name: production
+#            requires:
+#              - create-small-cluster
+#        - lint:
+#            requires:
+#             - deployment-1
         - aws-ecr/build-and-push-image:
             dockerfile: Dockerfile
             no-output-timeout: 20m
@@ -137,11 +137,11 @@ workflows:
             region: AWS_DEFAULT_REGION
             requires:
               - lint
-        - deployment-2:
-            cluster-name: production
-            requires:
-              - deployment-1
-              - delay
+#        - deployment-2:
+#            cluster-name: production
+#            requires:
+#              - deployment-1
+#              - delay
 #        - delay
 #            requires:
 #              - deployment-2
