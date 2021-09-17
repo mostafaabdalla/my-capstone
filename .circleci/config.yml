@@ -144,7 +144,7 @@ workflows:
             requires:
               - deployment-1
               - delay
-        - delay
+        - delay:
             requires:
               - deployment-2
 #        - aws-eks/delete-cluster:
