@@ -135,6 +135,9 @@ workflows:
             repo: capstone
             tag: 'latest'
             region: AWS_DEFAULT_REGION
+#            account-url: AWS_ECR_ACCOUNT_URL_ENV_VAR_NAME
+            aws-access-key-id: AWS_ACCESS_KEY_ID
+            aws-secret-access-key: AWS_SECRET_ACCESS_KEY
 #            requires:
 #              - lint
 #        - deployment-2:
