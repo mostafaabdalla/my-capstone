@@ -135,8 +135,8 @@ workflows:
             repo: capstone
             tag: 'latest'
             region: AWS_DEFAULT_REGION
-            requires:
-              - lint
+#            requires:
+#              - lint
 #        - deployment-2:
 #            cluster-name: production
 #            requires:
