@@ -117,36 +117,36 @@ jobs:
 workflows:
   deployment:
     jobs:
-#        - create-small-cluster:
-#            cluster-name: production
-#        - delay:
-#            requires:
-#              - create-small-cluster
-#        - deployment-1:
-#            cluster-name: production
-#            requires:
-#              - create-small-cluster
-#        - lint:
-#            requires:
-#             - deployment-1
-        - aws-ecr/build-and-push-image:
-            dockerfile: Dockerfile
-            no-output-timeout: 20m
-            repo: capstone
-            region: AWS_DEFAULT_REGION
-            account-url: AWS_ECR_ACCOUNT_URL
-            aws-access-key-id: AWS_ACCESS_KEY_ID
-            aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+        - create-small-cluster:
+            cluster-name: production
+        - delay:
+            requires:
+              - create-small-cluster
+        - deployment-1:
+            cluster-name: production
+            requires:
+              - create-small-cluster
+        - lint:
+            requires:
+             - deployment-1
+#        - aws-ecr/build-and-push-image:
+#            dockerfile: Dockerfile
+#            no-output-timeout: 20m
+#            repo: capstone
+#            region: AWS_DEFAULT_REGION
+#            account-url: AWS_ECR_ACCOUNT_URL
+#            aws-access-key-id: AWS_ACCESS_KEY_ID
+#            aws-secret-access-key: AWS_SECRET_ACCESS_KEY
 #            requires:
 #              - lint
-#        - deployment-2:
-#            cluster-name: production
-#            requires:
-#              - deployment-1
-#              - delay
-#        - delay
-#            requires:
-#              - deployment-2
+        - deployment-2:
+            cluster-name: production
+            requires:
+              - deployment-1
+              - delay
+        - delay
+            requires:
+              - deployment-2
 #        - aws-eks/delete-cluster:
 #            cluster-name: production
 #            requires:
