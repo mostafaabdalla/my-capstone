@@ -134,6 +134,7 @@ workflows:
             no-output-timeout: 20m
             repo: capstone
             tag: 'latest'
+            region: AWS_DEFAULT_REGION
             requires:
               - lint
         - deployment-2:
