@@ -113,29 +113,23 @@ jobs:
             name: verify new deployment works
             command: |
               kubectl get all
-  delay-2:
-    executor: aws-eks/python3
-    steps:
-      - run:
-          command: |
-            sleep 240
-          name: Delay cluster delete
-              
+
+
 workflows:
   deployment:
     jobs:
-#        - create-small-cluster:
-#            cluster-name: production
-#        - delay:
-#            requires:
-#              - create-small-cluster
-#        - deployment-1:
-#            cluster-name: production
-#            requires:
-#              - create-small-cluster
-#        - lint:
-#            requires:
-#             - deployment-1
+        - create-small-cluster:
+            cluster-name: production
+        - delay:
+            requires:
+              - create-small-cluster
+        - deployment-1:
+            cluster-name: production
+            requires:
+              - create-small-cluster
+        - lint:
+            requires:
+             - deployment-1
         - aws-ecr/build-and-push-image:
             dockerfile: Dockerfile
             tag: "latest"
@@ -145,17 +139,10 @@ workflows:
             account-url: AWS_ECR_ACCOUNT_URL
             aws-access-key-id: AWS_ACCESS_KEY_ID
             aws-secret-access-key: AWS_SECRET_ACCESS_KEY
-#            requires:
-#              - lint
-#        - deployment-2:
-#            cluster-name: production
-#            requires:
-#              - deployment-1
-#              - delay
-#        - delay:
-#            requires:
-#              - deployment-2
-#        - aws-eks/delete-cluster:
-#            cluster-name: production
-#            requires:
-#              - delay-2
+            requires:
+              - lint
+        - deployment-2:
+            cluster-name: production
+            requires:
+              - deployment-1
+              - delay
